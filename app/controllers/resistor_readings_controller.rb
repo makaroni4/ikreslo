@@ -6,6 +6,16 @@ class ResistorReadingsController < ApplicationController
   end
 
   def create
+    authenticate!
+
     ResistorReading.create!(value: params[:resistor_value])
+  end
+
+  private
+
+  def authenticate!
+    authenticate_or_request_with_http_token do |token, _options|
+      token = ENV["ARDUINO_REQUEST_TOKEN"]
+    end
   end
 end
