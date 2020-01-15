@@ -1,4 +1,5 @@
-<h1>Resistor Readings</h1>
+<div id="chart">
+</div>
 
 <table>
   <thead>
@@ -17,3 +18,72 @@
     <% end %>
   </tbody>
 </table>
+
+<script>
+var dates = <%= raw to_apex(@resistor_readings) %>;
+
+var options = {
+  series: [{
+    name: "Resistor Reading (1024 max)",
+    data: dates
+  }],
+  chart: {
+    type: 'area',
+    stacked: false,
+    height: 350,
+    zoom: {
+      type: 'x',
+      enabled: true,
+      autoScaleYaxis: true
+    },
+    toolbar: {
+      autoSelected: 'zoom'
+    }
+  },
+  dataLabels: {
+    enabled: false
+  },
+  markers: {
+    size: 0,
+  },
+  title: {
+    text: 'Resistor readings vs time',
+    align: 'left'
+  },
+  fill: {
+    type: 'gradient',
+    gradient: {
+      shadeIntensity: 1,
+      inverseColors: false,
+      opacityFrom: 0.5,
+      opacityTo: 0,
+      stops: [0, 90, 100]
+    },
+  },
+  yaxis: {
+    labels: {
+      formatter: function (val) {
+        return val;
+      },
+    },
+    title: {
+      text: 'Resistor Readings'
+    },
+  },
+  xaxis: {
+    type: 'datetime',
+  },
+  tooltip: {
+    shared: false,
+    y: {
+      formatter: function (val) {
+        return val;
+      }
+    }
+  }
+};
+
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+chart.render();
+
+</script>
