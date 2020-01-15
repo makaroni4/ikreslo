@@ -8,7 +8,7 @@ class ResistorReadingsController < ApplicationController
   def create
     authenticate!
 
-    ResistorReading.create!(value: params[:resistor_value])
+    ResistorReading.create!(value: params[:r_v])
   end
 
   private
