@@ -1,1 +1,19 @@
-<%= @resistor_readings %>
+<h1>Resistor Readings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>value</th>
+      <th>created_at </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resistor_readings.each do |reading| %>
+      <tr>
+        <td><%= reading.value %></td>
+        <td><%= reading.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
