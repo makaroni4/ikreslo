@@ -9,6 +9,8 @@ class ResistorReadingsController < ApplicationController
     authenticate!
 
     ResistorReading.create!(value: params[:r_v])
+
+    render plain: "SEND OK"
   end
 
   private
